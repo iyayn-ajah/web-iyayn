@@ -525,8 +525,10 @@
             });
             
             // Update iframe border
-            document.querySelector('iframe').parentElement.classList.remove('border-gray-700');
-            document.querySelector('iframe').parentElement.classList.add('border-gray-300');
+            if (document.querySelector('iframe')) {
+                document.querySelector('iframe').parentElement.classList.remove('border-gray-700');
+                document.querySelector('iframe').parentElement.classList.add('border-gray-300');
+            }
             
             // Update hover effects
             document.querySelectorAll('.hover\\:bg-white\\/10').forEach(el => {
@@ -542,8 +544,10 @@
             
             // Update profile image border
             const profileImg = document.querySelector('img[alt="Profile Picture"]');
-            profileImg.classList.remove('border-white/20');
-            profileImg.classList.add('border-black/20');
+            if (profileImg) {
+                profileImg.classList.remove('border-white/20');
+                profileImg.classList.add('border-black/20');
+            }
         }
 
         // Fungsi untuk mengupdate elemen ke dark mode
@@ -591,8 +595,10 @@
             });
             
             // Update iframe border
-            document.querySelector('iframe').parentElement.classList.remove('border-gray-300');
-            document.querySelector('iframe').parentElement.classList.add('border-gray-700');
+            if (document.querySelector('iframe')) {
+                document.querySelector('iframe').parentElement.classList.remove('border-gray-300');
+                document.querySelector('iframe').parentElement.classList.add('border-gray-700');
+            }
             
             // Update hover effects
             document.querySelectorAll('.hover\\:bg-black\\/10').forEach(el => {
@@ -608,8 +614,10 @@
             
             // Update profile image border
             const profileImg = document.querySelector('img[alt="Profile Picture"]');
-            profileImg.classList.remove('border-black/20');
-            profileImg.classList.add('border-white/20');
+            if (profileImg) {
+                profileImg.classList.remove('border-black/20');
+                profileImg.classList.add('border-white/20');
+            }
         }
 
         // Check saved theme preference
