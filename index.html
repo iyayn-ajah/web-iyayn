@@ -6,440 +6,321 @@
     <title>Shikaku Iyayn Ajah</title>
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/upload-file-lab/fileupload7/main/uploads/1766991657912.jpeg?format=png&name=900x900">
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
-                extend: {}
+                extend: {
+                    fontFamily: {
+                        'heading': ['"IBM Plex Mono"', 'monospace'],
+                        'body': ['"IBM Plex Mono"', 'monospace'],
+                    },
+                    colors: {
+                        'blackish': '#333',
+                        'whitish': '#f2f7f5',
+                    }
+                }
             }
         }
     </script>
-    
-    <style>
-        /* Smooth transitions */
-        * {
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #111111;
-        }
-        
-        .light-mode ::-webkit-scrollbar-track {
-            background: #f3f4f6;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #333333;
-            border-radius: 10px;
-        }
-        
-        .light-mode ::-webkit-scrollbar-thumb {
-            background: #cbd5e0;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #444444;
-        }
-        
-        .light-mode ::-webkit-scrollbar-thumb:hover {
-            background: #a0aec0;
-        }
-        
-        /* Audio player */
-        audio {
-            border-radius: 30px;
-            padding: 5px;
-            width: 100%;
-        }
-        
-        /* Theme toggle button */
-        .theme-toggle-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .theme-toggle-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Hidden utility */
-        .hidden {
-            display: none;
-        }
-        
-        /* Social media badge hover */
-        .social-badge {
-            transition: all 0.3s ease;
-        }
-        
-        .social-badge:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
-        
-        /* Card hover effect */
-        .card-hover {
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="font-sans bg-black text-white min-h-screen">
-    <!-- Theme Toggle Button -->
-    <button id="themeToggle" class="theme-toggle-btn bg-gray-900 border border-gray-700">
-        <!-- Moon icon (dark mode) -->
-        <svg id="theme-toggle-dark-icon" class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<body class="font-body bg-black text-white min-h-screen">
+    <button id="themeToggle" class="theme-toggle-btn">
+        <svg id="theme-toggle-dark-icon" class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
         </svg>
-        <!-- Sun icon (light mode) -->
-        <svg id="theme-toggle-light-icon" class="w-6 h-6 text-black hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+        <svg id="theme-toggle-light-icon" class="w-5 h-5 text-black hidden" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
         </svg>
     </button>
 
-    <header class="bg-gray-900 border-b border-gray-700 py-4 px-6 sticky top-0 z-50 shadow-lg">
-        <nav class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl sm:text-3xl font-extrabold">
-                Iyayn ajah
-            </a>
-            <ul class="flex space-x-4 text-sm sm:text-base">
-                <li><a href="#profile" class="hover:bg-white/10 transition-all duration-300 flex items-center gap-2 px-3 py-2 rounded-full">
-                    <span class="text-lg">👤</span>
-                    <span class="hidden sm:inline font-medium">Profile</span>
-                </a></li>
-                <li><a href="#project" class="hover:bg-white/10 transition-all duration-300 flex items-center gap-2 px-3 py-2 rounded-full">
-                    <span class="text-lg">🛠️</span>
-                    <span class="hidden sm:inline font-medium">Project</span>
-                </a></li>
-            </ul>
-        </nav>
+    <header id="mainHeader" class="border-b-2 border-white bg-black sticky top-0 z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" class="text-xl font-bold font-heading tracking-tight">Iyayn ajah</a>
+                <nav class="flex gap-2">
+                    <a href="#profile" class="border-2 border-white px-3 py-1.5 text-sm hover:bg-white hover:text-black transition-all">
+                        <span class="hidden sm:inline">Profile</span>
+                        <span class="sm:hidden">👤</span>
+                    </a>
+                    <a href="#skills" class="border-2 border-white px-3 py-1.5 text-sm hover:bg-white hover:text-black transition-all">
+                        <span class="hidden sm:inline">Skills</span>
+                        <span class="sm:hidden">💻</span>
+                    </a>
+                    <a href="#project" class="border-2 border-white px-3 py-1.5 text-sm hover:bg-white hover:text-black transition-all">
+                        <span class="hidden sm:inline">Projects</span>
+                        <span class="sm:hidden">🚀</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
     </header>
 
-    <main class="container mx-auto px-4 py-8">
-        
-        <!-- Profile Section -->
-        <section id="profile" class="bg-gray-900 border border-gray-700 p-8 mb-8 rounded-xl shadow-lg card-hover">
-            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 mb-8">
-                <img src="https://i.pinimg.com/736x/b9/34/d9/b934d991b09cdf3030972144565190d6.jpg" alt="Profile Picture" class="w-32 h-32 sm:w-40 sm:h-40 rounded-full border-4 border-white/20 shadow-xl hover:scale-105 transition-all duration-300">
-                <div class="text-center sm:text-left">
-                    <h1 class="text-4xl sm:text-5xl font-black mb-3">Shikakuzu Iyayn ajah</h1>
-                    <p class="text-lg flex items-center justify-center sm:justify-start gap-2 font-medium">
-                        <span class="text-xl">📱</span>
-                        @Shikaku
-                    </p>
-                </div>
-            </div>
-
-            <div class="grid gap-4 mb-8">
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <p class="text-center sm:text-left text-lg">
-                        <span class="text-2xl mr-3">👋</span>
-                        Hi, my name is <strong class="text-xl font-bold">Shikaku</strong>.
-                    </p>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <p class="text-center sm:text-left text-lg">
-                        <span class="text-2xl mr-3">😴</span>
-                        I'm often lazy, but always <strong class="text-xl font-bold">learning</strong>! 
-                        <span class="text-2xl ml-2">📚</span>
-                    </p>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <p class="text-center sm:text-left text-lg">
-                        <span class="text-2xl mr-3">🎂</span>
-                        My date of birth is April 18, 2009.
-                    </p>
-                </div>
-            </div>
-            
-            <div>
-                <h3 class="text-2xl font-black mb-6 flex items-center justify-center sm:justify-start gap-3 border-b border-gray-700 pb-2">
-                    My Bio
-                </h3>
-                <div class="flex flex-wrap gap-4 justify-center sm:justify-start">
-                    <a href="https://t.me/AfiqAjah" target="_blank" rel="noopener noreferrer" class="social-badge">
-                        <img src="https://img.shields.io/badge/Telegram-0088CC?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram" class="rounded-xl shadow-lg">
-                    </a>
-                    <a href="https://whatsapp.com/channel/0029VaoJb11LikgEpNpBty0e" target="_blank" rel="noopener noreferrer" class="social-badge">
-                        <img src="https://img.shields.io/badge/WhatsApp_Channel-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" alt="WhatsApp Channel" class="rounded-xl shadow-lg">
-                    </a>
-                    <a href="https://www.instagram.com/rapikuzu_desu/" target="_blank" rel="noopener noreferrer" class="social-badge">
-                        <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" class="rounded-xl shadow-lg">
-                    </a>
-                    <a href="https://github.com/iyayn-ajah" target="_blank" rel="noopener noreferrer" class="social-badge">
-                        <img src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" class="rounded-xl shadow-lg">
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="bg-gray-900 border border-gray-700 p-8 mb-8 rounded-xl shadow-lg card-hover">
-            <h2 class="text-3xl font-black border-b border-gray-700 pb-4 mb-8 flex items-center justify-center sm:justify-start gap-4">
-                My Skills
-            </h2>
-            
-            <h3 class="text-2xl font-black mb-6">Frontend</h3>
-            <div class="grid gap-4 mb-8">
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                        <div class="flex items-center gap-3 min-w-fit">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="w-8 h-8" />
-                            <strong class="text-xl font-bold">HTML</strong>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Beginner</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Learning</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">AI-Assisted</span>
-                        </div>
+    <main class="container mx-auto px-4 py-8 max-w-6xl">
+        <section id="profile" class="mb-8">
+            <div class="border-2 border-white p-6 raised-shadow">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-6 mb-6">
+                    <div class="flex-shrink-0">
+                        <img src="https://i.pinimg.com/736x/b9/34/d9/b934d991b09cdf3030972144565190d6.jpg" 
+                             alt="Profile Picture" 
+                             class="w-32 h-32 border-2 border-white object-cover">
                     </div>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                        <div class="flex items-center gap-3 min-w-fit">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="w-8 h-8" />
-                            <strong class="text-xl font-bold">CSS</strong>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Beginner</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Learning</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">AI-Assisted</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                        <div class="flex items-center gap-3 min-w-fit">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="w-8 h-8" />
-                            <strong class="text-xl font-bold">Tailwind CSS</strong>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Beginner</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Learning</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">AI-Assisted</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                        <div class="flex items-center gap-3 min-w-fit">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-8 h-8" />
-                            <strong class="text-xl font-bold">JavaScript</strong>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Beginner</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Learning</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">AI-Assisted</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h3 class="text-2xl font-black mb-6">Backend</h3>
-            <div class="grid gap-4 mb-8">
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                        <div class="flex items-center gap-3 min-w-fit">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-8 h-8" />
-                            <strong class="text-xl font-bold">Python</strong>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Beginner</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Learning</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">AI-Assisted</span>
+                    <div class="text-center md:text-left">
+                        <h1 class="text-3xl md:text-4xl font-bold font-heading mb-2">Shikaku Iyayn ajah</h1>
+                        <p class="text-lg mb-4">@Shikaku</p>
+                        <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                            <span class="badge">📱 Student</span>
+                            <span class="badge">🎂 April 18, 2009</span>
+                            <span class="badge">😴 Lazy Learner</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                        <div class="flex items-center gap-3 min-w-fit">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-8 h-8" />
-                            <strong class="text-xl font-bold">JavaScript</strong>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Beginner</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Learning</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">AI-Assisted</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                        <div class="flex items-center gap-3 min-w-fit">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="w-8 h-8" />
-                            <strong class="text-xl font-bold">Node.js</strong>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Beginner</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Learning</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">AI-Assisted</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                        <div class="flex items-center gap-3 min-w-fit">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" class="w-8 h-8 bg-white rounded p-1" />
-                            <strong class="text-xl font-bold">Express.js</strong>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Beginner</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">Learning</span>
-                            <span class="text-sm bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-full font-medium">AI-Assisted</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h3 class="text-2xl font-black mb-6">Tools</h3>
-            <div class="grid gap-4">
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <div class="flex items-center gap-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="w-8 h-8" />
-                        <strong class="text-xl font-bold">GitHub</strong>
-                    </div>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <div class="flex items-center gap-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" class="w-8 h-8" />
-                        <strong class="text-xl font-bold">VS Code</strong>
-                    </div>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <div class="flex items-center gap-3">
-                        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M0 12v12h24V0H0v12zm13.5-7.5h7.2l-10.5 15h-7.2l10.5-15z"/>
-                        </svg>
-                        <strong class="text-xl font-bold">Replit</strong>
-                    </div>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <div class="flex items-center gap-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" alt="Vercel" class="w-8 h-8" />
-                        <strong class="text-xl font-bold">Vercel</strong>
-                    </div>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl card-hover">
-                    <div class="flex items-center gap-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg" alt="Netlify" class="w-8 h-8" />
-                        <strong class="text-xl font-bold">Netlify</strong>
+                <div class="border-t-2 border-white pt-6">
+                    <h2 class="text-2xl font-bold font-heading mb-4">BIO</h2>
+                    <p class="mb-6">Hi, I'm <strong>Shikaku</strong>. I'm often lazy, but always learning! I enjoy building web projects and exploring new technologies.</p>
+                    
+                    <div class="flex flex-wrap gap-3">
+                        <a href="https://t.me/AfiqAjah" target="_blank" class="border-2 border-white px-4 py-2 hover:bg-white hover:text-black inline-flex items-center gap-2">
+                            <span>Telegram</span>
+                        </a>
+                        <a href="https://whatsapp.com/channel/0029VaoJb11LikgEpNpBty0e" target="_blank" class="border-2 border-white px-4 py-2 hover:bg-white hover:text-black inline-flex items-center gap-2">
+                            <span>WhatsApp</span>
+                        </a>
+                        <a href="https://www.instagram.com/rapikuzu_desu/" target="_blank" class="border-2 border-white px-4 py-2 hover:bg-white hover:text-black inline-flex items-center gap-2">
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://github.com/iyayn-ajah" target="_blank" class="border-2 border-white px-4 py-2 hover:bg-white hover:text-black inline-flex items-center gap-2">
+                            <span>GitHub</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- Projects Section -->
-        <section id="project" class="bg-gray-900 border border-gray-700 p-8 mb-8 rounded-xl shadow-lg card-hover">
-            <h2 class="text-3xl font-black border-b border-gray-700 pb-4 mb-8 flex items-center justify-center sm:justify-start gap-4">
-                My Projects
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-md card-hover">
-                    <h3 class="text-xl font-semibold mb-3">Web Rest API</h3>
-                    <a href="https://api.iyayn.web.id/" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white inline-block px-4 py-2 rounded-md transition-all duration-300">Visit Web</a>
-                </div>
 
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-md card-hover">
-                    <h3 class="text-xl font-semibold mb-3">Web File Uploader</h3>
-                    <a href="https://upf.iyayn.web.id/" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white inline-block px-4 py-2 rounded-md transition-all duration-300">Visit Web</a>
+        <section id="skills" class="mb-8">
+            <div class="border-2 border-white p-6 raised-shadow">
+                <h2 class="text-2xl font-bold font-heading mb-6 border-b-2 border-white pb-2">SKILLS</h2>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold font-heading mb-4">FRONTEND</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="border-2 border-white p-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="w-6 h-6" />
+                                <strong class="text-lg">HTML</strong>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Beginner</span>
+                                <span class="badge">Learning</span>
+                            </div>
+                        </div>
+                        
+                        <div class="border-2 border-white p-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="w-6 h-6" />
+                                <strong class="text-lg">CSS</strong>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Beginner</span>
+                                <span class="badge">Learning</span>
+                            </div>
+                        </div>
+                        
+                        <div class="border-2 border-white p-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="w-6 h-6" />
+                                <strong class="text-lg">Tailwind CSS</strong>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Beginner</span>
+                                <span class="badge">Learning</span>
+                            </div>
+                        </div>
+                        
+                        <div class="border-2 border-white p-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-6 h-6" />
+                                <strong class="text-lg">JavaScript</strong>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Beginner</span>
+                                <span class="badge">Learning</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-md card-hover">
-                    <h3 class="text-xl font-semibold mb-3">Web Meme Generator</h3>
-                    <a href="https://creatememe.iyayn.web.id/" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white inline-block px-4 py-2 rounded-md transition-all duration-300">Visit Web</a>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold font-heading mb-4">BACKEND</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="border-2 border-white p-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-6 h-6" />
+                                <strong class="text-lg">Python</strong>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Beginner</span>
+                                <span class="badge">Learning</span>
+                            </div>
+                        </div>
+                        
+                        <div class="border-2 border-white p-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="w-6 h-6" />
+                                <strong class="text-lg">Node.js</strong>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Beginner</span>
+                                <span class="badge">Learning</span>
+                            </div>
+                        </div>
+                        
+                        <div class="border-2 border-white p-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" class="w-6 h-6 bg-white p-1" />
+                                <strong class="text-lg">Express.js</strong>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge">Beginner</span>
+                                <span class="badge">Learning</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-md card-hover">
-                    <h3 class="text-xl font-semibold mb-3">Web Bratvid Generator</h3>
-                    <a href="https://bratvidgenerator.netlify.app/" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white inline-block px-4 py-2 rounded-md transition-all duration-300">Visit Web</a>
-                </div>
-
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-md card-hover">
-                    <h3 class="text-xl font-semibold mb-3">Web Image Tools</h3>
-                    <a href="https://imagetools.rapikzyeah.biz.id/" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white inline-block px-4 py-2 rounded-md transition-all duration-300">Visit Web</a>
-                </div>
-
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-md card-hover">
-                    <h3 class="text-xl font-semibold mb-3">Web Audio Transcripter</h3>
-                    <a href="https://audiotranscript.zone.id/" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white inline-block px-4 py-2 rounded-md transition-all duration-300">Visit Web</a>
-                </div>
-
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-md card-hover">
-                    <h3 class="text-xl font-semibold mb-3">Web Get lyrics (Indonesia version) </h3>
-                    <a href="https://dapatkanlirikdariaudio.zone.id/" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white inline-block px-4 py-2 rounded-md transition-all duration-300">Visit Web</a>
-                </div>
-
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-md card-hover">
-                    <h3 class="text-xl font-semibold mb-3">Web Get Lyrics</h3>
-                    <a href="https://getlyricsfromaudio.zone.id/" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white inline-block px-4 py-2 rounded-md transition-all duration-300">Visit Web</a>
-                </div>
-
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-md card-hover">
-                    <h3 class="text-xl font-semibold mb-3">Web Myana AI Chat</h3>
-                    <a href="https://myanakyutyawu-ai.zone.id/" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white inline-block px-4 py-2 rounded-md transition-all duration-300">Visit Web</a>
-                </div>
-
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-md card-hover">
-                    <h3 class="text-xl font-semibold mb-3">Web YouTube Downloader</h3>
-                    <a href="https://ytdl.zone.id/" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white inline-block px-4 py-2 rounded-md transition-all duration-300">Visit Web</a>
-                </div>
-
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-md card-hover">
-                    <h3 class="text-xl font-semibold mb-3">Web YouTube Transcripter</h3>
-                    <a href="https://youtubetranscripter.zone.id" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white inline-block px-4 py-2 rounded-md transition-all duration-300">Visit Web</a>
-                </div>
-
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-md card-hover">
-                    <h3 class="text-xl font-semibold mb-3">Web Audio Speed Changer</h3>
-                    <a href="https://audiospeedchanger.netlify.app/" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white inline-block px-4 py-2 rounded-md transition-all duration-300">Visit Web</a>
-                </div>
-
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-md card-hover">
-                    <h3 class="text-xl font-semibold mb-3">Web Identify music and get the title of the music.</h3>
-                    <a href="https://whatmusic.iyayn.web.id/" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white inline-block px-4 py-2 rounded-md transition-all duration-300">Visit Web</a>
-                </div>
-
-                <div class="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-md card-hover">
-                    <h3 class="text-xl font-semibold mb-3">WhatsApp Bot</h3>
-                    <span class="bg-gray-800 text-gray-400 border border-gray-700 inline-block px-4 py-2 rounded-md cursor-not-allowed">Private Project</span>
+                
+                <div>
+                    <h3 class="text-xl font-bold font-heading mb-4">TOOLS</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <div class="border-2 border-white p-4 text-center">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="w-8 h-8 mx-auto mb-2" />
+                            <strong>GitHub</strong>
+                        </div>
+                        
+                        <div class="border-2 border-white p-4 text-center">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" class="w-8 h-8 mx-auto mb-2" />
+                            <strong>VS Code</strong>
+                        </div>
+                        
+                        <div class="border-2 border-white p-4 text-center">
+                            <svg class="w-8 h-8 mx-auto mb-2" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M0 12v12h24V0H0v12zm13.5-7.5h7.2l-10.5 15h-7.2l10.5-15z"/>
+                            </svg>
+                            <strong>Replit</strong>
+                        </div>
+                        
+                        <div class="border-2 border-white p-4 text-center">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" alt="Vercel" class="w-8 h-8 mx-auto mb-2" />
+                            <strong>Vercel</strong>
+                        </div>
+                        
+                        <div class="border-2 border-white p-4 text-center">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg" alt="Netlify" class="w-8 h-8 mx-auto mb-2" />
+                            <strong>Netlify</strong>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        
-        <!-- Music Player Section -->
-        <section class="flex justify-center">
-            <div class="bg-gray-900 border border-gray-700 p-8 rounded-xl shadow-lg w-full max-w-lg card-hover">
-                <div class="text-center mb-6">
-                    <div class="flex items-center justify-center gap-4 mb-4">
-                        <span class="text-3xl">🎵</span>
-                        <span class="text-2xl font-black">Music</span>
-                        <span class="text-3xl">🎶</span>
+        <section id="project" class="mb-8">
+            <div class="border-2 border-white p-6 raised-shadow">
+                <h2 class="text-2xl font-bold font-heading mb-6 border-b-2 border-white pb-2">PROJECTS</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="border-2 border-white p-4">
+                        <h3 class="text-lg font-bold mb-2">Web Rest API</h3>
+                        <p class="text-sm mb-3">REST API services</p>
+                        <a href="https://api.iyayn.web.id/" target="_blank" class="border-2 border-white px-4 py-2 inline-block hover:bg-white hover:text-black">VISIT</a>
                     </div>
-                    <audio autoplay controls loop class="bg-gray-800">
+                    
+                    <div class="border-2 border-white p-4">
+                        <h3 class="text-lg font-bold mb-2">Web File Uploader</h3>
+                        <p class="text-sm mb-3">File upload service</p>
+                        <a href="https://upf.iyayn.web.id/" target="_blank" class="border-2 border-white px-4 py-2 inline-block hover:bg-white hover:text-black">VISIT</a>
+                    </div>
+                    
+                    <div class="border-2 border-white p-4">
+                        <h3 class="text-lg font-bold mb-2">Web Meme Generator</h3>
+                        <p class="text-sm mb-3">Create custom memes</p>
+                        <a href="https://creatememe.iyayn.web.id/" target="_blank" class="border-2 border-white px-4 py-2 inline-block hover:bg-white hover:text-black">VISIT</a>
+                    </div>
+                    
+                    <div class="border-2 border-white p-4">
+                        <h3 class="text-lg font-bold mb-2">Web Bratvid Generator</h3>
+                        <p class="text-sm mb-3">Video generator tool</p>
+                        <a href="https://bratvidgenerator.netlify.app/" target="_blank" class="border-2 border-white px-4 py-2 inline-block hover:bg-white hover:text-black">VISIT</a>
+                    </div>
+                    
+                    <div class="border-2 border-white p-4">
+                        <h3 class="text-lg font-bold mb-2">Web Image Tools</h3>
+                        <p class="text-sm mb-3">Image processing tools</p>
+                        <a href="https://imagetools.rapikzyeah.biz.id/" target="_blank" class="border-2 border-white px-4 py-2 inline-block hover:bg-white hover:text-black">VISIT</a>
+                    </div>
+                    
+                    <div class="border-2 border-white p-4">
+                        <h3 class="text-lg font-bold mb-2">Web Audio Transcripter</h3>
+                        <p class="text-sm mb-3">Audio to text converter</p>
+                        <a href="https://audiotranscript.zone.id/" target="_blank" class="border-2 border-white px-4 py-2 inline-block hover:bg-white hover:text-black">VISIT</a>
+                    </div>
+                    
+                    <div class="border-2 border-white p-4">
+                        <h3 class="text-lg font-bold mb-2">Web Get lyrics (Indonesia version)</h3>
+                        <p class="text-sm mb-3">Indonesian lyrics finder</p>
+                        <a href="https://dapatkanlirikdariaudio.zone.id/" target="_blank" class="border-2 border-white px-4 py-2 inline-block hover:bg-white hover:text-black">VISIT</a>
+                    </div>
+                    
+                    <div class="border-2 border-white p-4">
+                        <h3 class="text-lg font-bold mb-2">Web Get Lyrics</h3>
+                        <p class="text-sm mb-3">Lyrics finder tool</p>
+                        <a href="https://getlyricsfromaudio.zone.id/" target="_blank" class="border-2 border-white px-4 py-2 inline-block hover:bg-white hover:text-black">VISIT</a>
+                    </div>
+                    
+                    <div class="border-2 border-white p-4">
+                        <h3 class="text-lg font-bold mb-2">Web Myana AI Chat</h3>
+                        <p class="text-sm mb-3">AI chatbot interface</p>
+                        <a href="https://myanakyutyawu-ai.zone.id/" target="_blank" class="border-2 border-white px-4 py-2 inline-block hover:bg-white hover:text-black">VISIT</a>
+                    </div>
+                    
+                    <div class="border-2 border-white p-4">
+                        <h3 class="text-lg font-bold mb-2">Web YouTube Downloader</h3>
+                        <p class="text-sm mb-3">YouTube video downloader</p>
+                        <a href="https://ytdl.zone.id/" target="_blank" class="border-2 border-white px-4 py-2 inline-block hover:bg-white hover:text-black">VISIT</a>
+                    </div>
+                    
+                    <div class="border-2 border-white p-4">
+                        <h3 class="text-lg font-bold mb-2">Web YouTube Transcripter</h3>
+                        <p class="text-sm mb-3">YouTube transcription tool</p>
+                        <a href="https://youtubetranscripter.zone.id" target="_blank" class="border-2 border-white px-4 py-2 inline-block hover:bg-white hover:text-black">VISIT</a>
+                    </div>
+                    
+                    <div class="border-2 border-white p-4">
+                        <h3 class="text-lg font-bold mb-2">Web Audio Speed Changer</h3>
+                        <p class="text-sm mb-3">Audio speed adjustment tool</p>
+                        <a href="https://audiospeedchanger.netlify.app/" target="_blank" class="border-2 border-white px-4 py-2 inline-block hover:bg-white hover:text-black">VISIT</a>
+                    </div>
+                    
+                    <div class="border-2 border-white p-4">
+                        <h3 class="text-lg font-bold mb-2">Identify music and get the title</h3>
+                        <p class="text-sm mb-3">Music identification service</p>
+                        <a href="https://whatmusic.iyayn.web.id/" target="_blank" class="border-2 border-white px-4 py-2 inline-block hover:bg-white hover:text-black">VISIT</a>
+                    </div>
+                    
+                    <div class="border-2 border-white p-4">
+                        <h3 class="text-lg font-bold mb-2">WhatsApp Bot</h3>
+                        <p class="text-sm mb-3">WhatsApp automation bot</p>
+                        <span class="private-btn px-4 py-2 inline-block">PRIVATE</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <div class="border-2 border-white p-6 raised-shadow">
+                <div class="text-center">
+                    <h2 class="text-2xl font-bold font-heading mb-4">MUSIC</h2>
+                    <audio autoplay controls loop>
                         <source src="https://upf.iyayn.web.id/files/KWM2Z7.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
@@ -447,243 +328,7 @@
             </div>
         </section>
     </main>
-
-    <footer class="bg-gray-900 border-t border-gray-700 text-center p-8 mt-12">
-        <p class="text-lg font-medium">&copy; 2025 Iyayn Amja</p>
-    </footer>
-
-    <script>
-        const themeToggleBtn = document.getElementById('themeToggle');
-        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-        const body = document.body;
-        const html = document.documentElement;
-
-        // Fungsi untuk mengubah tema
-        function toggleTheme() {
-            const isDark = html.classList.contains('dark');
-            
-            if (isDark) {
-                // Switch to light mode
-                html.classList.remove('dark');
-                body.classList.add('light-mode');
-                body.classList.remove('bg-black', 'text-white');
-                body.classList.add('bg-white', 'text-black');
-                
-                // Update semua elemen untuk light mode
-                updateElementsForLightMode();
-                
-                // Update toggle button
-                themeToggleBtn.classList.remove('bg-gray-900', 'border-gray-700');
-                themeToggleBtn.classList.add('bg-white', 'border-gray-300');
-                
-                // Update icons
-                themeToggleDarkIcon.classList.add('hidden');
-                themeToggleLightIcon.classList.remove('hidden');
-                
-                localStorage.setItem('theme', 'light');
-            } else {
-                // Switch to dark mode
-                html.classList.add('dark');
-                body.classList.remove('light-mode');
-                body.classList.remove('bg-white', 'text-black');
-                body.classList.add('bg-black', 'text-white');
-                
-                // Update semua elemen untuk dark mode
-                updateElementsForDarkMode();
-                
-                // Update toggle button
-                themeToggleBtn.classList.remove('bg-white', 'border-gray-300');
-                themeToggleBtn.classList.add('bg-gray-900', 'border-gray-700');
-                
-                // Update icons
-                themeToggleDarkIcon.classList.remove('hidden');
-                themeToggleLightIcon.classList.add('hidden');
-                
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-
-        // Fungsi untuk mengupdate elemen ke light mode
-        function updateElementsForLightMode() {
-            // Update backgrounds
-            document.querySelectorAll('.bg-gray-900').forEach(el => {
-                el.classList.remove('bg-gray-900', 'border-gray-700');
-                el.classList.add('bg-white', 'border-gray-200');
-            });
-            
-            document.querySelectorAll('.bg-gray-800').forEach(el => {
-                el.classList.remove('bg-gray-800', 'border-gray-700');
-                el.classList.add('bg-gray-100', 'border-gray-300');
-            });
-            
-            document.querySelectorAll('.bg-gray-700').forEach(el => {
-                el.classList.remove('bg-gray-700', 'border-gray-600', 'text-gray-200');
-                el.classList.add('bg-gray-200', 'border-gray-400', 'text-gray-800');
-            });
-            
-            // Update header
-            document.querySelector('header').classList.remove('bg-gray-900', 'border-gray-700');
-            document.querySelector('header').classList.add('bg-white', 'border-gray-200');
-            
-            // Update footer
-            document.querySelector('footer').classList.remove('bg-gray-900', 'border-gray-700');
-            document.querySelector('footer').classList.add('bg-white', 'border-gray-200');
-            
-            // Update buttons
-            document.querySelectorAll('.bg-gray-700.hover\\:bg-gray-600').forEach(el => {
-                el.classList.remove('bg-gray-700', 'hover:bg-gray-600', 'text-white');
-                el.classList.add('bg-gray-300', 'hover:bg-gray-400', 'text-gray-800');
-            });
-            
-            // Update audio player
-            document.querySelectorAll('audio.bg-gray-800').forEach(el => {
-                el.classList.remove('bg-gray-800');
-                el.classList.add('bg-gray-200');
-            });
-            
-            // Update private button
-            document.querySelectorAll('.bg-gray-800.text-gray-400').forEach(el => {
-                el.classList.remove('bg-gray-800', 'text-gray-400', 'border-gray-700');
-                el.classList.add('bg-gray-200', 'text-gray-600', 'border-gray-400');
-            });
-            
-            // Update iframe border
-            if (document.querySelector('iframe')) {
-                document.querySelector('iframe').parentElement.classList.remove('border-gray-700');
-                document.querySelector('iframe').parentElement.classList.add('border-gray-300');
-            }
-            
-            // Update hover effects
-            document.querySelectorAll('.hover\\:bg-white\\/10').forEach(el => {
-                el.classList.remove('hover:bg-white/10');
-                el.classList.add('hover:bg-black/10');
-            });
-            
-            // Update border colors
-            document.querySelectorAll('.border-gray-700').forEach(el => {
-                el.classList.remove('border-gray-700');
-                el.classList.add('border-gray-300');
-            });
-            
-            // Update profile image border
-            const profileImg = document.querySelector('img[alt="Profile Picture"]');
-            if (profileImg) {
-                profileImg.classList.remove('border-white/20');
-                profileImg.classList.add('border-black/20');
-            }
-        }
-
-        // Fungsi untuk mengupdate elemen ke dark mode
-        function updateElementsForDarkMode() {
-            // Update backgrounds
-            document.querySelectorAll('.bg-white').forEach(el => {
-                el.classList.remove('bg-white', 'border-gray-200');
-                el.classList.add('bg-gray-900', 'border-gray-700');
-            });
-            
-            document.querySelectorAll('.bg-gray-100').forEach(el => {
-                el.classList.remove('bg-gray-100', 'border-gray-300');
-                el.classList.add('bg-gray-800', 'border-gray-700');
-            });
-            
-            document.querySelectorAll('.bg-gray-200').forEach(el => {
-                el.classList.remove('bg-gray-200', 'border-gray-400', 'text-gray-800');
-                el.classList.add('bg-gray-700', 'border-gray-600', 'text-gray-200');
-            });
-            
-            // Update header
-            document.querySelector('header').classList.remove('bg-white', 'border-gray-200');
-            document.querySelector('header').classList.add('bg-gray-900', 'border-gray-700');
-            
-            // Update footer
-            document.querySelector('footer').classList.remove('bg-white', 'border-gray-200');
-            document.querySelector('footer').classList.add('bg-gray-900', 'border-gray-700');
-            
-            // Update buttons
-            document.querySelectorAll('.bg-gray-300.hover\\:bg-gray-400').forEach(el => {
-                el.classList.remove('bg-gray-300', 'hover:bg-gray-400', 'text-gray-800');
-                el.classList.add('bg-gray-700', 'hover:bg-gray-600', 'text-white');
-            });
-            
-            // Update audio player
-            document.querySelectorAll('audio.bg-gray-200').forEach(el => {
-                el.classList.remove('bg-gray-200');
-                el.classList.add('bg-gray-800');
-            });
-            
-            // Update private button
-            document.querySelectorAll('.bg-gray-200.text-gray-600').forEach(el => {
-                el.classList.remove('bg-gray-200', 'text-gray-600', 'border-gray-400');
-                el.classList.add('bg-gray-800', 'text-gray-400', 'border-gray-700');
-            });
-            
-            // Update iframe border
-            if (document.querySelector('iframe')) {
-                document.querySelector('iframe').parentElement.classList.remove('border-gray-300');
-                document.querySelector('iframe').parentElement.classList.add('border-gray-700');
-            }
-            
-            // Update hover effects
-            document.querySelectorAll('.hover\\:bg-black\\/10').forEach(el => {
-                el.classList.remove('hover:bg-black/10');
-                el.classList.add('hover:bg-white/10');
-            });
-            
-            // Update border colors
-            document.querySelectorAll('.border-gray-300').forEach(el => {
-                el.classList.remove('border-gray-300');
-                el.classList.add('border-gray-700');
-            });
-            
-            // Update profile image border
-            const profileImg = document.querySelector('img[alt="Profile Picture"]');
-            if (profileImg) {
-                profileImg.classList.remove('border-black/20');
-                profileImg.classList.add('border-white/20');
-            }
-        }
-
-        // Check saved theme preference
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        
-        if (savedTheme === 'light') {
-            // Apply light mode initially
-            html.classList.remove('dark');
-            body.classList.add('light-mode');
-            body.classList.remove('bg-black', 'text-white');
-            body.classList.add('bg-white', 'text-black');
-            
-            themeToggleBtn.classList.remove('bg-gray-900', 'border-gray-700');
-            themeToggleBtn.classList.add('bg-white', 'border-gray-300');
-            
-            themeToggleDarkIcon.classList.add('hidden');
-            themeToggleLightIcon.classList.remove('hidden');
-            
-            // Update elements for light mode
-            setTimeout(updateElementsForLightMode, 10);
-        }
-
-        // Add event listener
-        themeToggleBtn.addEventListener('click', toggleTheme);
-
-        // Smooth scroll untuk anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+    
+    <script src="script.js"></script>
 </body>
 </html>
