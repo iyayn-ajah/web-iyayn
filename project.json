@@ -1,0 +1,86 @@
+[
+    {
+        "name": "Web Rest API",
+        "url": "https://api.iyayn.web.id/",
+        "type": "public"
+    },
+    {
+        "name": "Web File Uploader",
+        "url": "https://upf.iyayn.web.id/",
+        "type": "public"
+    },
+    {
+        "name": "Web Meme Generator",
+        "url": "https://creatememe.iyayn.web.id/",
+        "type": "public"
+    },
+    {
+        "name": "Web Bratvid Generator",
+        "url": "https://bratvidgenerator.netlify.app/",
+        "type": "public"
+    },
+    {
+        "name": "Web Audio Transcripter",
+        "url": "https://audiotranscript.zone.id/",
+        "type": "public"
+    },
+    {
+        "name": "Web Myana AI Chat",
+        "url": "https://myanakyutyawu-ai.zone.id/",
+        "type": "public"
+    },
+    {
+        "name": "Web YouTube Downloader",
+        "url": "https://ytdl.zone.id/",
+        "type": "public"
+    },
+    {
+        "name": "Web Audio Speed Changer",
+        "url": "https://audiospeedchanger.netlify.app/",
+        "type": "public"
+    },
+    {
+        "name": "Identify music and get the title",
+        "url": "https://whatmusic.zone.id/",
+        "type": "public"
+    },
+    {
+        "name": "Web TikTok downloader",
+        "url": "https://ttdl.iyayn.web.id/",
+        "type": "public"
+    },
+    {
+        "name": "Web Upscaler Image",
+        "url": "https://upscaler.iyayn.web.id/",
+        "type": "public"
+    },
+    {
+        "name": "Web Image to Image",
+        "url": "https://img2img.zone.id/",
+        "type": "public"
+    },
+    {
+        "name": "Web Get YouTube Thumbnail",
+        "url": "https://getthumbyt.zone.id/",
+        "type": "public"
+    },
+    {
+        "name": "Web Face Swap",
+        "url": "https://swapface.zone.id/",
+        "type": "public"
+    },
+    {
+        "name": "Web URL Shortener",
+        "url": "https://urlshort.zone.id/",
+        "type": "public"
+    },
+    {
+        "name": "Web X/Twitter Downloader",
+        "url": "https://xtwitterdl.zone.id/",
+        "type": "public"
+    },
+    {
+        "name": "WhatsApp Bot",
+        "type": "private"
+    }
+]
