@@ -1,5 +1,10 @@
 [
     {
+        "name": "Web Code Vault",
+        "url": "https://codevault.iyayn.web.id/",
+        "type": "public"
+    },
+    {
         "name": "Web Rest API",
         "url": "https://api.iyayn.web.id/",
         "type": "public"
